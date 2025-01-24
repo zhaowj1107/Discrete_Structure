@@ -1,5 +1,5 @@
 '''
-this program will solve the Calendar Problem! 
+this program will solve the Calendar Problem!
 three variables (Year, Month, Day)
 output the correct day of the week 
 Author: David Zhao

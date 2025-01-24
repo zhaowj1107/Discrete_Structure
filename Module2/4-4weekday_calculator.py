@@ -1,5 +1,16 @@
+'''
+File: weekday_calculator.py
+Authors: Jun/Xiang/Ziming/Weijian(David)
+Date: 2025-01-17
+Class: CS_5002, Spring_2025
+Description: 
+The program calculates the weekday of a given date.
+'''
+
+
 def month_day_count(target_month,leap = 0):
     """
+    Figure out the days in the target month
     input: target_month==>int, leap(1/0)
     output: days==>int
     """
@@ -71,18 +82,18 @@ def month_day_count(target_month,leap = 0):
 
 def days_in_year(target_date_4, leap = 0):
     """
+    Figure out the days in the target year
     inut: target_date_4==>str, leap==>int
     output: days==>int
+    Days in the year is 32
 
     >>> days_in_year("0201",0) 
-    Days in the year is 32
     32
     >>> days_in_year("0228",0) 
-    Days in the year is 59
     59
     >>> days_in_year("1231",0) 
-    Days in the year is 365
     365
+
     """
     target_month = int(target_date_4[:2])
     target_date_days = int(target_date_4[-2:])
@@ -93,6 +104,7 @@ def days_in_year(target_date_4, leap = 0):
 
 def is_leap(target_year):
     """
+    Figure out if the year is a leap year
     inut: target_date_4==>int/str
     output: 1/0 ==>int
     """
@@ -109,6 +121,7 @@ def is_leap(target_year):
 
 def Counting_years(target_year, base_year = 2025):
     """
+    Figure out the number of leap years and non-leap years between the target year and the base year
     input: target_year==>int/str, base_year==>int/str
     output: non_leap_year, leap_year ==>int, direction==>int
     """
@@ -137,6 +150,9 @@ def Counting_years(target_year, base_year = 2025):
 
 
 def counting_days(target_date):
+    """
+    Figure out the number of days between the target date and the base date
+    """
     BASE_DATE = "20250101"
     target_date = str(target_date)
     target_year = target_date[:4]
@@ -154,12 +170,20 @@ def counting_days(target_date):
 
 def main(year, month, day):
     """
-    >>> main(20250101)
+    Calculate the weekday of the target date
+    input: year==>int, month==>int, day==>int
+    output: weekday==>int
+
+    >>> main(2025,1,1)
+    Wednesday
     2
-    >>> main(20250105)
+    >>> main(2025,1,5)
+    Sunday
     6
-    >>> main(20241228)
-    5    
+    >>> main(2024,12,28)
+    Saturday
+    5
+
     """
     #we use 0 to 6 to represent Monday to Sunday
     BASE_WEEKDAY = 2
@@ -187,3 +211,43 @@ def main(year, month, day):
     else:
         print("Sunday")
     return weekday
+
+
+def curry(f):
+    """
+    >>> a = curry(main)
+    >>> a(2020)(1)(1)
+    Wednesday
+    2
+    >>> a(2000)(1)(1) 
+    Saturday
+    5
+    >>> a        
+    <function curry.<locals>.year at 0x000001C95C8B0220>
+    >>> a_2000 = a(2000) 
+    >>> a
+    <function curry.<locals>.year at 0x000001C95C8B0220>
+    >>> a_2000          
+    <function curry.<locals>.year.<locals>.month at 0x000001C95C8B0360>
+    >>> a_2000(12)(1)
+    Friday
+    4
+    """
+    def year(year):
+        def month(month):
+            def day(day):
+                return f(year, month, day)
+            return day
+        return month
+    return year
+
+curry2 = lambda f: lambda year: lambda month: lambda day: f(year, month, day)
+# curry2(main)(2020)(1)(1)
+# this function is the same as the curry function
+
+
+if __name__ == "__main__":
+    main(2003,12,28)
+    # doctect for the main function
+    #import doctest 
+    #doctest.testmod(verbose=True)

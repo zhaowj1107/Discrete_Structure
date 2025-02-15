@@ -10,7 +10,6 @@ The following 3 funtions with default operands
 problem_part_a()
 problem_part_b()
 problem_part_c()
-
 '''
 letter_set = ["A","G","I","L","N"]
 
@@ -72,7 +71,6 @@ def problem_part_b(letter_list = letter_set, position = 87) -> str:
     letter_list.sort() # sort in alphabet order
     total_length = len(letter_list)
     total_number = factorial(total_length)
-    letter_list = []
     position = position - 1
     while total_length > 0:
         total_number = total_number // total_length
@@ -87,17 +85,33 @@ def problem_part_b(letter_list = letter_set, position = 87) -> str:
 letter_set = ["A","G","I","L","N"]
 VOWELS = ["A", "E", "I", "O", "U"]
 
-def problem_part_c(letter_list = letter_set, word = "ALIGN"):
+
+def problem_part_c(letter_list = letter_set):
     total_length = len(letter_list)
-    word_list = []
-    while total_length > 0:
-        word = ""
-        for letter in letter_list:
-            word = 
-        word_list.append(str(word))
-        total_length -= 1
+    permutations = [[]]
+    word_with_vowel = []
+    # generate the list of 120 words through permutation
+    for letter in letter_list:
+        new_permutations = []
+        for perm in permutations:
+            for pos in range(len(perm) + 1):
+                new_perm = perm[:pos] + [letter] + perm[pos:]
+                new_permutations.append(new_perm)
+        permutations = new_permutations
+
+    # transfer list to words
+    words = ["".join(p) for p in permutations]
+    for word in words:
+        if word[0] in VOWELS and not(word[-1] in VOWELS):
+            word_with_vowel.append(word)
+            # print(word)
+
+    print(f"he probability that this chosen word begins with a vowel and ends with a consonant is {len(word_with_vowel)/len(words)}")
+    return len(word_with_vowel)/len(words)
 
 if __name__ == "__main__":
     problem_part_a()
     problem_part_b()
-    # problem_part_c()
+    problem_part_c()
+    # print(word_gen_recursiom(letter_list = letter_set))
+    # print(problem_part_c(letter_set))

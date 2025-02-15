@@ -1,7 +1,7 @@
 '''
-File: weijian3-5.py
+File: weijian5-1.py
 Authors: Weijian(David)
-Date: 2025-02-11
+Date: 2025-02-13
 Class: CS_5002, Spring_2025
 Description: 
 solve the lock permutation and combination pizzle

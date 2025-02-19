@@ -11,7 +11,7 @@ problem_part_a(n)
 problem_part_b(n)
 problem_part_c(n)
 
-The following 3 funtions are building the result list, and print the list/ return the length
+The following 3 funtions are building the result list, and print the list return the length
 
 problem_part_a_iter(n)
 problem_part_b_iter(n)

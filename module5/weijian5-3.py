@@ -37,11 +37,11 @@ def is_valid_set(card1, card2, card3):
             count_diff += 1
         elif (a == b == c):
             count_same += 1
-    if (count_diff + count_same) == 4:
-    # count_diff == 2 and count_same == 2:
-    # count_diff == 4 and count_same == 0:
-    # count_diff == 3 and count_same == 1:
-    # count_diff == 1 and count_same == 3:
+    if (count_diff + count_same) == 4 and count_same != 4:
+    # if count_diff == 2 and count_same == 2:
+    # if count_diff == 4 and count_same == 0:
+    # if count_diff == 3 and count_same == 1:
+    # if count_diff == 1 and count_same == 3:
         return True
     else:
         return False

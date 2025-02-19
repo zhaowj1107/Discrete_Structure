@@ -4,6 +4,8 @@ Authors: Weijian(David)
 Date: 2025-01-25
 Description: 
 Use Deepseek to return the logic statement, and create the truth table
+Puzzle website:
+https://philosophy.hku.hk/think/logic/knights.php
 """
 import re
 from openai import OpenAI
@@ -24,7 +26,7 @@ def deepseek(user_input):
     3. or and not一定要用小写
     4. 必须只有1行
     5. 不要使用xor!
-    6. 使用字母而不是名字
+    6. 使用单字母而不是名字
     7. 要考虑所有人说的是真话或假话的情况
 
     请注意只输出结果本身，不要输出任何其他东西，多一次词也不要!!!!

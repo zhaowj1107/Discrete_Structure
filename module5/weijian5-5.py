@@ -1,6 +1,6 @@
 '''
 File: weijian5-5.py
-Authors: Weijian(David)
+Authors: John/Sia/David
 Date: 2025-02-14
 Class: CS_5002, Spring_2025
 Description: 

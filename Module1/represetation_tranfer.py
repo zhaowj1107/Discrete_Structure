@@ -36,3 +36,7 @@ def represetation_tranfer(base1,base2):
         #print("-----------")
         order = order + 1
     print(f"the base{base2} number is {base2_num}")
+
+
+
+represetation_tranfer(3,9)

@@ -12,6 +12,7 @@ problem_part_b()
 problem_part_c()
 '''
 letter_set = ["A","G","I","L","N"]
+letter_set2 = ["P","Y","T","H","O","N"]
 
 def factorial(n):
     """
@@ -110,7 +111,7 @@ def problem_part_c(letter_list = letter_set):
     return len(word_with_vowel)/len(words)
 
 if __name__ == "__main__":
-    problem_part_a()
+    problem_part_a(letter_set2, 'PYTHON')
     problem_part_b()
     problem_part_c()
     # print(word_gen_recursiom(letter_list = letter_set))

@@ -6,6 +6,8 @@ Class: CS_5002, Spring_2025
 Description: 
 homework 8-5:sorting algorithms
 """
+import time
+import pandas as pd
 
 def swap(x, y):
     """
@@ -119,20 +121,71 @@ def merge_sort(list_n):
         list_left, list_right = split(list_n)
         return merge(merge_sort(list_left), merge_sort(list_right))
 
+def create_list(n):
+    """"
+    ""Create a list of numbers from 0 to n-1 and return the last two numbers as target."
+    """
+    nums = []
+    for i in range(n):
+        nums.append(i)
+    target = nums[-1] + nums[-2]
+    return nums, target
+
+def sample(n):
+    """
+    Create a list of numbers from 0 to n-1 and return the last two numbers as target."
+    """
+    list_data = create_list(n)
+    print(f"run three sorting funtions in {n} numbers worst case.")
+    start = time.time()
+    print("Here is the bubble sort.")
+    bubble_sort(list_data)
+    end = time.time()
+    time_list_bubble = round(end - start,8)
+    print("The runtime of bubble sort:", time_list_bubble, "seconds\n")
+
+    start = time.time()
+    print("Here is the insert sort.")
+    insert_sort(list_data)
+    end = time.time()
+    time_list_insert = round(end - start,8)
+    print("The runtime of insert sort:", time_list_insert, "seconds\n")
+
+    start = time.time()
+    print("Here is the merge sort.")
+    merge_sort(list_data)
+    end = time.time()
+    time_list_merge = round(end - start,8)
+    print("The runtime of merge sort:", time_list_merge, "seconds\n")
+    return time_list_bubble, time_list_insert, time_list_merge
+
+
 
 if __name__ == "__main__":
-    list_a = [5, 4, 3, 2, 1]
-    print("Here is the bubble sort.")
-    bubble_sort(list_a)
-    list_a = [5, 4, 3, 2, 1]
-    print("\nHere is the bubble sort.")
-    insert_sort(list_a)
+    
+    # list_a = [5, 4, 3, 2, 1]
+    # print("Here is the bubble sort.")
+    # bubble_sort(list_a)
+    # list_a = [5, 4, 3, 2, 1]
+    # print("\nHere is the bubble sort.")
+    # insert_sort(list_a)
 
-    list_n = [100,3,5,7,2,4,6,8,1]
-    merge_sort(list_n)
+    # list_n = [100,3,5,7,2,4,6,8,1]
+    # merge_sort(list_n)
     
     # list1 = [1,3,5,7]
     # list2 = [2,4,6,8]
     # merge(list1,list2)
 
+    records = []
+    for n in range(1, 11, 1):
+        time_bubble, time_insert, time_merge = sample(5000)
+        records.append({"Iteration": n, "Bubble Sort": time_bubble, "Insert Sort": time_insert, "Merge Sort": time_merge})
+    
+    df = pd.DataFrame(records)
+    # print the average of each column
+    print(df)
+    print("Average of each sorting algorithm:")
+    print(df[["Bubble Sort", "Insert Sort", "Merge Sort"]].mean())
+    # df.to_csv("sorting_times.csv", index=False)
 
